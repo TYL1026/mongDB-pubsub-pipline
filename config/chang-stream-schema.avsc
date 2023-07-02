@@ -1,0 +1,30 @@
+{
+  "type": "record",
+  "name": "DocumentMessage",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "pickup_datetime",
+      "type": "string"
+    },
+    {
+      "name": "PULocationID",
+      "type": "string"
+    },
+    {
+      "name": "dropoff_datetime",
+      "type": "string"
+    },
+    {
+      "name": "DOLocationID",
+      "type": "string"
+    },
+    {
+      "name": "Hvfhs_license_num",
+      "type": "string"
+    }
+  ]
+}
