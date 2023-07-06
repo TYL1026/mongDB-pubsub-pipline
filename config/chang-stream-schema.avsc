@@ -4,11 +4,17 @@
   "fields": [
     {
       "name": "pickup_datetime",
-      "type": "string"
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
     },
     {
       "name": "dropoff_datetime",
-      "type": "string"
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
     },
     {
       "name": "pickup_lat",

@@ -55,10 +55,11 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
       );
     const definition = file.toString();
     const type = avro.parse(definition);
+    console.log(typeof document.pickup_datetime)
     const message = {
         id: JSON.stringify(document._id),
-        pickup_datetime: document.pickup_datetime.toString(),
-        dropoff_datetime: document.dropoff_datetime.toString(),
+        pickup_datetime: document.pickup_datetime.getTime(),
+        dropoff_datetime: document.dropoff_datetime.getTime(),
         pickup_lat:document.pickup_lat.toString(),
         pickup_lat:document.pickup_lat.toString(),
         pickup_long:document.pickup_long.toString(),
