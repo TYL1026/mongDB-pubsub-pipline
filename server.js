@@ -32,18 +32,18 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
         const document = event.fullDocument;
         publishDocumentAsMessage(document,  process.env.PUB_SUB_TOPIC);
     });
-    await closeChangeStream(60000, changeStream);
+    // await closeChangeStream(60000, changeStream);
  }
   
- function closeChangeStream(timeInMs, changeStream) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log('Closing the change stream');
-            changeStream.close();
-            resolve();
-        }, timeInMs)
-    })
- };
+//  function closeChangeStream(timeInMs, changeStream) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             console.log('Closing the change stream');
+//             changeStream.close();
+//             resolve();
+//         }, timeInMs)
+//     })
+//  };
 
  async function publishDocumentAsMessage(document, topicName) {
     const pubSubClient = new PubSub();
@@ -58,12 +58,15 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
     const message = {
         id: JSON.stringify(document._id),
         pickup_datetime: document.pickup_datetime.toString(),
-        PULocationID: document.PULocationID.toString(),
         dropoff_datetime: document.dropoff_datetime.toString(),
-        DOLocationID: document.DOLocationID.toString(),
+        pickup_lat:document.pickup_lat.toString(),
+        pickup_lat:document.pickup_lat.toString(),
+        pickup_long:document.pickup_long.toString(),
+        dropoff_lat:document.dropoff_lat.toString(),
+        dropoff_long:document.dropoff_long.toString(),
         Hvfhs_license_num: document.Hvfhs_license_num.toString(),
     };
-    
+    console.log(message)
     const dataBuffer = Buffer.from(type.toString(message));
     try {
         const messageId = await topic.publishMessage({ data: dataBuffer });

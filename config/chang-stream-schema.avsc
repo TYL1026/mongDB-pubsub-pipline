@@ -1,17 +1,9 @@
 {
   "type": "record",
-  "name": "DocumentMessage",
+  "name": "Avro",
   "fields": [
     {
-      "name": "id",
-      "type": "string"
-    },
-    {
       "name": "pickup_datetime",
-      "type": "string"
-    },
-    {
-      "name": "PULocationID",
       "type": "string"
     },
     {
@@ -19,11 +11,27 @@
       "type": "string"
     },
     {
-      "name": "DOLocationID",
+      "name": "pickup_lat",
+      "type": "string"
+    },
+    {
+      "name": "pickup_long",
+      "type": "string"
+    },
+    {
+      "name": "dropoff_lat",
+      "type": "string"
+    },
+    {
+      "name": "dropoff_long",
       "type": "string"
     },
     {
       "name": "Hvfhs_license_num",
+      "type": "string"
+    },
+    {
+      "name": "id",
       "type": "string"
     }
   ]
