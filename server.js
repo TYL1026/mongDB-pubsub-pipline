@@ -10,6 +10,16 @@ dotenv.config()
 let mongodbClient;
 const port = process.env.PORT;
 const pubSubClient = new PubSub();
+
+
+app.get('/', (req, res) => {
+    const name = process.env.NAME || 'World';
+    res.send(`Hello ${name}!`);
+  });
+  
+app.listen(port, () => {
+    console.log(`helloworld: listening on port ${port}`);
+});
 const connectDb = async () => {
     try {
         mongodbClient = new MongoClient(process.env.CONNECTION_STRING);
