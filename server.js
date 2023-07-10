@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
     const name = process.env.NAME || 'World';
     res.send(`Hello ${name}!`);
   });
-  
+
 app.listen(port, () => {
     console.log(`helloworld: listening on port ${port}`);
 });
@@ -42,18 +42,11 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
         const document = event.fullDocument;
         if(event.operationType != 'delete'){
             publishDocumentAsMessage(document,  process.env.PUB_SUB_TOPIC);
-        }else{
-            deleteSubscription(JSON.stringify(document.documentKey._id));
         }
         
     });
  }
  
- async function deleteSubscription(id) {
-    // Deletes the subscription
-    const query = `SELECT *
-    FROM \`perceptive-day-388607.mangoDb_change_stream.mongoDb_change_stream\``;
-  }
   
  async function publishDocumentAsMessage(document, topicName) {
     const topic = pubSubClient.topic(topicName);
