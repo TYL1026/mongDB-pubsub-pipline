@@ -27,7 +27,6 @@ const connectDb = async () => {
         await monitorCollectionForInserts(mongodbClient, 'Uber_NYC', 'UberData');
     } catch (err) {
         console.log(err);
-        process.exit(1);
     }
 }
 connectDb()
