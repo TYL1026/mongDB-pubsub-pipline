@@ -11,7 +11,7 @@ let mongodbClient;
 const port = process.env.PORT;
 const pubSubClient = new PubSub();
 const topic = pubSubClient.topic(process.env.PUB_SUB_TOPIC);
-
+const configDirectory = path.resolve(process.cwd(), "config");
 
 const file = fs.readFileSync(
     path.join(configDirectory, "chang-stream-schema.avsc"),
@@ -54,7 +54,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
  
   
  async function publishDocumentAsMessage(document) {
-    const configDirectory = path.resolve(process.cwd(), "config");
+
     const message = {
         id: JSON.stringify(document._id),
         pickup_datetime: document.pickup_datetime.getTime(),
