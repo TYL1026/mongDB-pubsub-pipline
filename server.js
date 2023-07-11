@@ -12,6 +12,7 @@ const port = process.env.PORT;
 const pubSubClient = new PubSub();
 const topic = pubSubClient.topic(process.env.PUB_SUB_TOPIC);
 console.log(topic.name)
+const topicName = process.env.PUB_SUB_TOPIC;
 const configDirectory = path.resolve(process.cwd(), "config");
 const file = fs.readFileSync(
     path.join(configDirectory, "chang-stream-schema.avsc"),
@@ -19,6 +20,19 @@ const file = fs.readFileSync(
   );
 const definition = file.toString();
 const type = avro.parse(definition);
+
+
+topic.exists()
+  .then(([exists]) => {
+    if (exists) {
+      console.log(`Topic ${topicName} exists and is connected successfully.`);
+    } else {
+      console.log(`Topic ${topicName} does not exist or could not be connected.`);
+    }
+  })
+  .catch((err) => {
+    console.error('Error checking topic existence:', err);
+  });
 
 const server = app.listen(port, () => {
     console.log(`Server Run on ${port} `)
