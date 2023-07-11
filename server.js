@@ -46,7 +46,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
     changeStream.on('change', event => {
         const document = event.fullDocument;
         if(event.operationType != 'delete'){
-            console.log(topic.exists())
+
             publishDocumentAsMessage(document );
             console.log("New Row added")
         }else{
