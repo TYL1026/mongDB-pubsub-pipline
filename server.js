@@ -38,17 +38,16 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
     const collection = client.db(databaseName).collection(collectionName);
     // An aggregation pipeline that matches on new documents in the collection.
     const changeStream = collection.watch([], { fullDocument: 'updateLookup' });
-    changeStream.on('change', event => {
-        const document = event.fullDocument;
-        if(event.operationType != 'delete'){
-            console.log(document)
-            publishDocumentAsMessage(document );
-            console.log("New Row added")
-        }else{
-            console.log("Row deleted")
-        }
+    // changeStream.on('change', event => {
+    //     const document = event.fullDocument;
+    //     if(event.operationType != 'delete'){
+    //         publishDocumentAsMessage(document );
+    //         console.log("New Row added")
+    //     }else{
+    //         console.log("Row deleted")
+    //     }
         
-    });
+    // });
  }
 
  async function publishDocumentAsMessage(document) {
@@ -66,7 +65,6 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
     };
     const dataBuffer = Buffer.from(type.toString(message));
     try {
-        console.log(`start publish`);
         const messageId = await topic.publishMessage({ data: dataBuffer });
         console.log(`Avro record ${messageId} published.`);
     } catch(error) {
