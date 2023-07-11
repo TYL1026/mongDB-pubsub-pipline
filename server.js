@@ -23,7 +23,6 @@ const server = app.listen(port, () => {
     console.log(`Server Run on ${port} `)
 })
 
-
 const connectDb = async () => {
     try {
         mongodbClient = new MongoClient(process.env.CONNECTION_STRING);
@@ -33,7 +32,6 @@ const connectDb = async () => {
         console.log(err);
     }
 }
-connectDb()
 
 async function monitorCollectionForInserts(client, databaseName, collectionName) {
     const collection = client.db(databaseName).collection(collectionName);
@@ -47,11 +45,21 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
         }else{
             console.log("Row deleted")
         }
-        
+       
     });
+    await closeChangeStream(6000, changeStream);
  }
  
-  
+ function closeChangeStream(timeInMs, changeStream) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log('Closing the change stream');
+            changeStream.close();
+            resolve();
+        }, timeInMs)
+    })
+ };
+
  async function publishDocumentAsMessage(document) {
 
     const message = {
@@ -73,3 +81,5 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
         console.error(error);
     }
  }
+
+ connectDb()
