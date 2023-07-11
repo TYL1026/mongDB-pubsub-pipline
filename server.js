@@ -7,6 +7,11 @@ const avro = require('avro-js');
 var path = require("path");
 const dotenv = require("dotenv")
 dotenv.config()
+
+const server = app.listen(port, () => {
+    console.log(`Server Run on ${port} `)
+})
+
 let mongodbClient;
 const port = process.env.PORT;
 const pubSubClient = new PubSub();
@@ -20,9 +25,6 @@ const file = fs.readFileSync(
 const definition = file.toString();
 const type = avro.parse(definition);
 
-const server = app.listen(port, () => {
-    console.log(`Server Run on ${port} `)
-})
 
 
 const connectDb = async () => {
