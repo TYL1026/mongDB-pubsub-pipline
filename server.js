@@ -21,7 +21,7 @@ const connectDb = async () => {
         console.log("Database connected ");
         await monitorCollectionForInserts(mongodbClient, 'Uber_NYC', 'UberData');
     } finally {
-        mongodbClient.close();
+        console.log("close");
     }
 }
 
@@ -39,9 +39,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
         }
         
     });
-
  }
-
 
  async function publishDocumentAsMessage(document) {
     const pubSubClient = new PubSub();
@@ -70,7 +68,6 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
         console.log(`Avro record ${messageId} published.`);
     } catch(error) {
         console.error(error);
-        changeStream.close();
     }
  }
 
