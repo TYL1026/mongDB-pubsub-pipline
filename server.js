@@ -13,6 +13,11 @@ const pubSubClient = new PubSub();
 const topic = pubSubClient.topic( process.env.PUB_SUB_TOPIC);
 
 
+const server = app.listen(port, () => {
+    console.log(`Server Run on ${port} `)
+})
+
+
 const connectDb = async () => {
     try {
         mongodbClient = new MongoClient(process.env.CONNECTION_STRING);
