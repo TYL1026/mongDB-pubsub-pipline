@@ -32,8 +32,9 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
     changeStream.on('change', event => {
         const document = event.fullDocument;
         if(event.operationType != 'delete'){
-            console.log("New Row added")
+            
             publishDocumentAsMessage(document );
+            console.log("New Row added")
         }else{
             console.log("Row deleted")
         }
@@ -64,6 +65,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
     };
     const dataBuffer = Buffer.from(type.toString(message));
     try {
+        console.log(`start publish`);
         const messageId = await topic.publishMessage({ data: dataBuffer });
         console.log(`Avro record ${messageId} published.`);
     } catch(error) {
