@@ -10,7 +10,7 @@ dotenv.config()
 let mongodbClient;
 const port = process.env.PORT;
 const pubSubClient = new PubSub();
-const topic = pubSubClient.topic( process.env.PUB_SUB_TOPIC);
+
 
 
 const server = app.listen(port, () => {
@@ -47,6 +47,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
  
   
  async function publishDocumentAsMessage(document) {
+    const topic = pubSubClient.topic(process.env.PUB_SUB_TOPIC);
     const configDirectory = path.resolve(process.cwd(), "config");
     const file = fs.readFileSync(
         path.join(configDirectory, "chang-stream-schema.avsc"),
