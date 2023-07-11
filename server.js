@@ -10,7 +10,7 @@ dotenv.config()
 let mongodbClient;
 const port = process.env.PORT;
 const pubSubClient = new PubSub();
-
+const topic = pubSubClient.topic( process.env.PUB_SUB_TOPIC);
 
 
 const connectDb = async () => {
@@ -32,7 +32,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
         const document = event.fullDocument;
         if(event.operationType != 'delete'){
             console.log("New Row added")
-            publishDocumentAsMessage(document,  process.env.PUB_SUB_TOPIC);
+            publishDocumentAsMessage(document );
         }else{
             console.log("Row deleted")
         }
@@ -41,8 +41,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
  }
  
   
- async function publishDocumentAsMessage(document, topicName) {
-    const topic = pubSubClient.topic(topicName);
+ async function publishDocumentAsMessage(document) {
     const configDirectory = path.resolve(process.cwd(), "config");
     const file = fs.readFileSync(
         path.join(configDirectory, "chang-stream-schema.avsc"),
