@@ -12,14 +12,7 @@ const port = process.env.PORT;
 const pubSubClient = new PubSub();
 
 
-app.get('/', (req, res) => {
-    const name = process.env.NAME || 'World';
-    res.send(`Hello ${name}!`);
-  });
 
-app.listen(port, () => {
-    console.log(`helloworld: listening on port ${port}`);
-});
 const connectDb = async () => {
     try {
         mongodbClient = new MongoClient(process.env.CONNECTION_STRING);
@@ -38,7 +31,10 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
     changeStream.on('change', event => {
         const document = event.fullDocument;
         if(event.operationType != 'delete'){
+            console.log("New Row added")
             publishDocumentAsMessage(document,  process.env.PUB_SUB_TOPIC);
+        }else{
+            console.log("Row deleted")
         }
         
     });
