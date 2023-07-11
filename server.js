@@ -37,20 +37,11 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
         }else{
             console.log("Row deleted")
         }
-       
+        
     });
-    await closeChangeStream(60000, changeStream);
+
  }
- 
- function closeChangeStream(timeInMs, changeStream) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log('Closing the change stream');
-            changeStream.close();
-            resolve();
-        }, timeInMs)
-    })
- };
+
 
  async function publishDocumentAsMessage(document) {
     const pubSubClient = new PubSub();
@@ -79,7 +70,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
         console.log(`Avro record ${messageId} published.`);
     } catch(error) {
         console.error(error);
-        await closeChangeStream(60000, changeStream);
+        changeStream.close();
     }
  }
 
