@@ -11,7 +11,7 @@ let mongodbClient;
 const port = process.env.PORT;
 const pubSubClient = new PubSub();
 const topic = pubSubClient.topic(process.env.PUB_SUB_TOPIC);
-// console.log(topic.exists())
+
 const topicName = process.env.PUB_SUB_TOPIC;
 
 const configDirectory = path.resolve(process.cwd(), "config");
@@ -46,6 +46,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
     changeStream.on('change', event => {
         const document = event.fullDocument;
         if(event.operationType != 'delete'){
+            console.log(topic.exists())
             publishDocumentAsMessage(document );
             console.log("New Row added")
         }else{
