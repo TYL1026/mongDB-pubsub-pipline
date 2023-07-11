@@ -28,8 +28,8 @@ const connectDb = async () => {
         mongodbClient = new MongoClient(process.env.CONNECTION_STRING);
         console.log("Database connected ");
         await monitorCollectionForInserts(mongodbClient, 'Uber_NYC', 'UberData');
-    } catch (err) {
-        console.log(err);
+    } finally {
+        mongodbClient.close();
     }
 }
 
@@ -79,6 +79,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
         console.log(`Avro record ${messageId} published.`);
     } catch(error) {
         console.error(error);
+        await closeChangeStream(6000, changeStream);
     }
  }
 
