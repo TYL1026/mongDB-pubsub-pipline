@@ -39,7 +39,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
         }
        
     });
-    await closeChangeStream(6000, changeStream);
+    await closeChangeStream(60000, changeStream);
  }
  
  function closeChangeStream(timeInMs, changeStream) {
@@ -79,7 +79,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
         console.log(`Avro record ${messageId} published.`);
     } catch(error) {
         console.error(error);
-        await closeChangeStream(6000, changeStream);
+        await closeChangeStream(60000, changeStream);
     }
  }
 
