@@ -67,6 +67,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
     };
     const dataBuffer = Buffer.from(type.toString(message));
     try {
+        console.log(message)
         const messageId = await topic.publishMessage({ data: dataBuffer });
         console.log(`Avro record ${messageId} published.`);
     } catch(error) {
