@@ -20,7 +20,7 @@ const connectDb = async () => {
         mongodbClient = new MongoClient(process.env.CONNECTION_STRING);
         console.log("Database connected ");
         await monitorCollectionForInserts(mongodbClient, 'Uber_NYC', 'UberData');
-    } finally {
+    } catch {
         console.log("close");
     }
 }
