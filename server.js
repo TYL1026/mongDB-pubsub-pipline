@@ -35,9 +35,7 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
     const collection = client.db(databaseName).collection(collectionName);
     // An aggregation pipeline that matches on new documents in the collection.
     const changeStream = collection.watch([], { fullDocument: 'updateLookup' });
-    console.log("Pub/Sub connected");
     changeStream.on('change', event => {
-        console.log(event)
         const document = event.fullDocument;
         if(event.operationType != 'delete'){
             publishDocumentAsMessage(document,  process.env.PUB_SUB_TOPIC);
@@ -56,7 +54,6 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
       );
     const definition = file.toString();
     const type = avro.parse(definition);
-    console.log(typeof document.pickup_datetime)
     const message = {
         id: JSON.stringify(document._id),
         pickup_datetime: document.pickup_datetime.getTime(),
