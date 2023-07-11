@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "perceptive-day-388607",
+  "private_key_id": "9208acd188b61cf6ee0e3f361287eb0089fd0f3e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCn3f/jELuB7VBY\n6IdqVKHipWZuZPQlKCkuJIYkjhAzFXXQaOQBY3zBMk0JvX1OzKxUu/wxiMVzviDt\n9IQQ8GuTxDM1/xTTJ4aey2yu1Lsv4YBSjBSkqNDRhMN2aJ18ts+h/jc2lirR3QGV\ndG/olZAxOwZv7EmcgZwLsLE/vEm1F/0ckAvPZ60i96CgjUPJ5e4o4bR5HgHv6mY8\nO3IN9FCirLQftFkXfAzhns5PamUFZQC4XKPFVtNCDdKLcAyFAOSnoJQJXftrHdSk\nNXtZ6TleZdaOBM1EDCZusAx5r24RkXl6n99LZn005qfSeVWeH8ivTHshprqAV6Po\noO9m5zDRAgMBAAECggEAManHM6lWoCjSlYstzPJ+9mvSsyRg6sFH9aPOn+/7sPFP\narotgo+pcAruqcwKz45UCbmX8huxtv1wBpZJoC1Q1mW8dOQjiBjwhfhPDiZXvuGr\nMkDJNrHPHb12ioiG10fKg/WO5jJlNrN47XuGRDxDbZ012VUBrjDWNssulVmiQNX9\nkkIg0IzGDQfmql6XlcFZOoIKhvrfcRS3ZmirTtYHy4I0qvj1odH6jO4qkhAb1E/8\nBobhdCtH5qhXfk7ffwU1IXk3g705yFU8+pz5+Qqk+EKkp/evcQSEiRtqWpnUA25r\nDHB4abNoji8LtuGAoQDmO/kNHzIs93ikQjFfSKtR5QKBgQDoSv4ObcodX2iG3ukH\n/8HOFpnpNMjYbmbZIAZOl7/zVj6UPur8BewSNCMAK0IPc9IxBJkFvQvGXd3sC1P7\ncg9bSWzIPRK15U6cqx78XDiYalv2QJ4MstrJ2vv9lCmPp1EOxrU9uv9tSU4I968e\nmuhlna3oJHBg9GHU53dPNU2HawKBgQC4/8k37eS4Qt3PU1L0Se/1gXL+tPp9M+BC\nRZllOJR6Aj2PavAzKf5oQOqFo3f3FG85S8Mx75EX4JsVUv0pA1qvqXT30ZDLKOWp\nBavYQjhwOI5R+alAjSBw2V1swlIC1vZhFFV2Is3H7YCyh1QeBm5WFBJM5wN2Pgai\nHYPdTGHDswKBgBkDYkIJfncVO/sx66Pp3WOkuWQMRAhSMw70TNmPq6K3SbvK3qDO\nvnHjXVV6Uv24+gw/M38TsT3mA6yUN7HewVqSGH2jXe1qSMHEB20jPRDkewyUPrCd\nXcPYqcPPfX4zhR3zNbb0+OY6u4Vprli8U4QFq6FQsy0tg49acVV9JuELAoGBALLv\njRPQwMJMwrhO0tTAUx22WKDuMb46F/Zh1U3nXQ1p71sxxyTlwFHcQDqEc3uDw1S6\n6BD7s+5RbA9DFuS9ftCbaixtAczPQNusRZvF6Ur6GQZHIiLynecpB0kz5xkiDGq3\nvTWn0jxHh4ymgoEMHVqazVyesWWD9uyE+c9pmsIrAoGAMFF6J3I7kBhx/byHWHr7\nn3altlfdRQlQHmnllKPFEzQpW/l8jGM9IsaaHECfVuMTUpkx0fm4aruP0KLlT15m\neRg2MGKkEoZM6mMctaZ+UQXJcVA3ULNAt8HDZTi2lUtj77OMuAWhEgc9vXLK00N9\na+rwmkrMAaQKFEuc/1O9KDY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "bigquery-role@perceptive-day-388607.iam.gserviceaccount.com",
+  "client_id": "100908980329869913311",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bigquery-role%40perceptive-day-388607.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

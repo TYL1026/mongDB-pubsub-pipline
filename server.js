@@ -13,17 +13,6 @@ const pubSubClient = new PubSub();
 const topic = pubSubClient.topic(process.env.PUB_SUB_TOPIC);
 console.log(topic.name)
 const topicName = process.env.PUB_SUB_TOPIC;
-topic.exists()
-  .then(([exists]) => {
-    if (exists) {
-      console.log(`Topic ${topicName} exists and is connected successfully.`);
-    } else {
-      console.log(`Topic ${topicName} does not exist or could not be connected.`);
-    }
-  })
-  .catch((err) => {
-    console.error('Error checking topic existence:', err);
-  });
 
 const configDirectory = path.resolve(process.cwd(), "config");
 const file = fs.readFileSync(
@@ -54,16 +43,16 @@ async function monitorCollectionForInserts(client, databaseName, collectionName)
     const collection = client.db(databaseName).collection(collectionName);
     // An aggregation pipeline that matches on new documents in the collection.
     const changeStream = collection.watch([], { fullDocument: 'updateLookup' });
-    // changeStream.on('change', event => {
-    //     const document = event.fullDocument;
-    //     if(event.operationType != 'delete'){
-    //         publishDocumentAsMessage(document );
-    //         console.log("New Row added")
-    //     }else{
-    //         console.log("Row deleted")
-    //     }
+    changeStream.on('change', event => {
+        const document = event.fullDocument;
+        if(event.operationType != 'delete'){
+            publishDocumentAsMessage(document );
+            console.log("New Row added")
+        }else{
+            console.log("Row deleted")
+        }
         
-    // });
+    });
  }
 
  async function publishDocumentAsMessage(document) {
