@@ -7,17 +7,12 @@ const avro = require('avro-js');
 var path = require("path");
 const dotenv = require("dotenv")
 dotenv.config()
-
-const server = app.listen(port, () => {
-    console.log(`Server Run on ${port} `)
-})
-
 let mongodbClient;
 const port = process.env.PORT;
 const pubSubClient = new PubSub();
 const topic = pubSubClient.topic(process.env.PUB_SUB_TOPIC);
 const configDirectory = path.resolve(process.cwd(), "config");
-
+const PUB_SUB_TOPIC = 'projects/perceptive-day-388607/topics/MON_T';
 const file = fs.readFileSync(
     path.join(configDirectory, "chang-stream-schema.avsc"),
     "utf8"
@@ -25,6 +20,9 @@ const file = fs.readFileSync(
 const definition = file.toString();
 const type = avro.parse(definition);
 
+const server = app.listen(port, () => {
+    console.log(`Server Run on ${port} `)
+})
 
 
 const connectDb = async () => {
